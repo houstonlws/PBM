@@ -1,0 +1,9 @@
+[submodule "PBM-Frontend"]
+	path = PBM-Frontend
+	url = git@github.com:houstonlws/PBM-Frontend.git
+[submodule "PBM-Backend"]
+	path = PBM-Backend
+	url = git@github.com:houstonlws/PBM-Backend.git
+[submodule "PBM-Database"]
+	path = PBM-Database
+	url = git@github.com:houstonlws/PBM-Database.git
