@@ -23,7 +23,7 @@ To set up and run the Print Bill Master application, follow these steps:
 Clone the main repository, which includes submodules for the frontend, backend, and database:
 
     ```bash
-    git clone --recurse-submodules https://github.com/yourusername/PBM-Main.git
+    git clone --recurse-submodules https://github.com/houstonlws/PBM-Main.git
     cd PBM-Main
     ```
 
