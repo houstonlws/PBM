@@ -22,21 +22,19 @@ To set up and run the Print Bill Master application, follow these steps:
 
 Clone the main repository, which includes submodules for the frontend, backend, and database:
 
-    ```bash
-    git clone --recurse-submodules https://github.com/houstonlws/PBM-Main.git
-    cd PBM-Main
-    ```
+```bash
+git clone --recurse-submodules https://github.com/houstonlws/PBM-Main.git
+cd PBM-Main
+```
 
 ### 2. Initialize and Update Submodules
 
 If the submodules were not cloned properly, initialize and update them manually:
 
-    ```bash
     git submodule init
     git submodule update
-    ```
 
-    The submodules are:
+The submodules are:
 
 - PBM-Frontend: The React-based frontend application.
 - PBM-Backend: The Spring Boot backend service.
