@@ -21,8 +21,8 @@
 title: Print Bill Master
 email: houstonhvrd@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Print billing and management spplication.
-baseurl: /pbm"" # the subpath of your site, e.g. /blog
+  Print billing and management application.
+baseurl: /pbm # the subpath of your site, e.g. /blog
 url: 'houstonlws.github.io' # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username: jekyll
