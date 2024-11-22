@@ -5,7 +5,6 @@ theme: just-the-docs
 email: houstonhvrd@gmail.com
 url: https://houstonlws.github.io
 baseurl: /portfolio/pbm
-# source: docs
 
 aux_links:
   PBM GitHub: https://github.com/houstonlws/PrintBillMaster
