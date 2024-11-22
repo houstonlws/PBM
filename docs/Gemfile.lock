@@ -293,6 +293,7 @@ DEPENDENCIES
   jekyll-default-layout
   just-the-docs (= 0.10.0)
   rouge (~> 3.30.0)
+  webrick
 
 BUNDLED WITH
    2.5.9
