@@ -219,9 +219,8 @@ GEM
       html-pipeline (~> 2.2)
       jekyll (>= 3.0, < 5.0)
     json (2.8.2)
-    just-the-docs (0.10.0)
+    just-the-docs (0.5.0)
       jekyll (>= 3.8.5)
-      jekyll-include-cache
       jekyll-seo-tag (>= 2.0)
       rake (>= 12.3.1)
     kramdown (2.4.0)
@@ -238,7 +237,7 @@ GEM
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
-    minitest (5.25.1)
+    minitest (5.25.2)
     net-http (0.5.0)
       uri
     nokogiri (1.16.7-arm64-darwin)
@@ -291,7 +290,8 @@ DEPENDENCIES
   github-pages (~> 232)
   jekyll (~> 3.10.0)
   jekyll-default-layout
-  just-the-docs (= 0.10.0)
+  just-the-docs (= 0.5.0)
+  kramdown-parser-gfm
   rouge (~> 3.30.0)
   webrick
 
