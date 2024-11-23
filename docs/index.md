@@ -1,5 +1,5 @@
 ---
-title: Print BillMaster
+title: Print Bill Master
 nav_order: 1
 ---
 
