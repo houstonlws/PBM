@@ -1,6 +1,6 @@
 title: Print Bill Master
 description: "A Web-Based Printer Management Application Built for Scale."
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 
 email: houstonhvrd@gmail.com
 url: https://houstonlws.github.io
@@ -8,3 +8,15 @@ baseurl: /PrintBillMaster
 
 aux_links:
   PBM GitHub: https://github.com/houstonlws/PrintBillMaster
+
+just-the-docs:
+  logo: /assets/images/logo.png
+  search_enabled: true
+  navigation:
+    - name: Home
+      url: /
+    - name: Documentation
+      url: /docs/
+
+plugins:
+  - jekyll-remote-theme
