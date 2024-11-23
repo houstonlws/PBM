@@ -1,6 +1,6 @@
 title: Print Bill Master
 description: "A Web-Based Printer Management Application Built for Scale."
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs@v0.5.2
 
 email: houstonhvrd@gmail.com
 url: https://houstonlws.github.io
