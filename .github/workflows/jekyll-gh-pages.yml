@@ -18,24 +18,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Ruby environment
+      # Step 2: Set up Ruby with the same version as the lockfile
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: '3.0' # Use a Ruby version compatible with your setup
           bundler-cache: true
 
-      # Step 3: Install dependencies inside the docs folder
-      - name: Install dependencies
+      # Step 3: Install Bundler and update dependencies
+      - name: Update Bundler and install dependencies
         run: |
+          gem install bundler:2.5.9
           cd docs
+          bundle update ffi
           bundle install
 
-      # Step 4: Build Jekyll site (specifying the docs folder as source)
+      # Step 4: Build Jekyll site
       - name: Build Jekyll site
         run: |
           cd docs
@@ -43,7 +45,7 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      # Step 5: Upload artifact (specifying the built site in docs/_site)
+      # Step 5: Upload artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -56,7 +58,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Step 1: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
