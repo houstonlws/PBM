@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  # Database Service
+  db:
+    build:
+      context: ./PBM-Database
+      dockerfile: DockerFile
+    image: pbm-database-image
+    container_name: pbm-database-container
+    ports:
+      - '3307:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: PBM_Database
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./PBM-Database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Spring Boot Backend Service
+  backend:
+    build:
+      context: ./PBM-Backend
+      dockerfile: DockerFile
+    image: pbm-backend-image
+    container_name: pbm-backend-container
+    ports:
+      - '8080:8080'
+    env_file:
+      - ./PBM-Backend/.env
+    # environment:
+    #   SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/PBM_Database
+    #   SPRING_DATASOURCE_USERNAME: user
+    #   SPRING_DATASOURCE_PASSWORD: password
+    #   REFRESH_TOKEN_SECRET: replace_me
+    depends_on:
+      - db
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: ./PBM-Frontend
+      dockerfile: DockerFile
+    image: pbm-frontend-image
+    container_name: pbm-frontend-container
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
