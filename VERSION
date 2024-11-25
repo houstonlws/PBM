@@ -1,5 +1,1 @@
-PBM: v1.0.0
-Submodules:
-  - PBM-Frontend: v1.0.0
-  - PBM-Backend: v1.0.0
-  - PBM-Database: v1.0.0
+1.0.0 (PBM-Backend@v1.0.0 PBM-Database@v1.0.0 PBM-Frontend@v1.0.0)
