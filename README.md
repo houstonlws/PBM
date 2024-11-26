@@ -54,3 +54,7 @@ The application will be available at `http://localhost:3000`.
 To close the application, press `Ctrl + C` in the terminal where the Docker Compose command is running. To stop and remove the containers, networks, and volumes, use the following command:  
 
 `docker-compose down`
+
+## Documentation
+
+For more detailed information about the application, including components and usage, please refer to the [Docs](https://houstonlws.github.io/PBM/).
