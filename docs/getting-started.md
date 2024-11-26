@@ -6,113 +6,55 @@ nav_order: 2
 
 # **Getting Started**
 
-## **Prerequisites**
+## Prerequisites
 
-Before running the Print Bill Master application, ensure the following tools and software are installed and configured on your system:
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine 
 
-- **Node.js and npm:** - [How to Install Node.js and npm](https://nodejs.org/en/download)  
-  Required for running the frontend application.
-- **Docker Desktop:** - [Install Docker Desktop](https://docs.docker.com/get-docker/)  
-  Used to manage and run the MySQL database in a Docker container.
-- **Java 17:** - [Install Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)  
-  Necessary to run the Spring Boot backend service.
-- **Git and Git Bash:** - [Install Git and Git Bash](https://git-scm.com/downloads)  
-  Required for version control and managing repositories.
-- **Database Connection Software (Optional):** - [Download DBeaver](https://dbeaver.io/download/)  
-  Tools like DBeaver are useful for viewing and managing the database.
+- [Java Verison 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or above installed on your machine
 
-## **Setup Instructions**
+## Quick Start Guide
 
-Follow these steps to set up the Print Bill Master application:
+To begin, be sure that Docker Desktop is installed and running.
 
-### **1. Clone the Main Project and Submodules:**
+### Clone the Repository
 
-Use the following commands to clone the main repository, including its submodules:
+Executing the following command will clone the repository to your local machine and initialize the submodules required for the project.
 
-```bash
-git clone --recurse-submodules https://github.com/houstonlws/PBM-Main.git
-cd PBM-Main
-git submodule init
-git submodule update
-```
+`git clone git@github.com:houstonlws/PBM.git`  
+`cd PBM`  
+`git submodule update --init`
 
-This will clone the main project and initialize the submodules for the frontend, backend, and database.The Print Bill Master application is organized into three distinct submodules, each serving a specific purpose to deliver a seamless experience:
+### Build the Backend
 
-- **PBM-Frontend**: A React-based application that provides an intuitive and interactive user interface.
-- **PBM-Backend**: A robust backend service built with Spring Boot to handle business logic and API integrations.
-- **PBM-Database**: A Docker container housing the MySQL database, ensuring secure and efficient data management.
+The appication is deployed using Docker Compose. For the deploys to be successful, the backend must be built first.
 
-### **2. Start the Database Container**
+Navigate to the backend directory `PBM-Backend` and open the .env file. Update the following variables with your own values:
 
-Navigate to the database submodule and start the MySQL database using Docker:
+- `SPRING_DATASOURCE_USERNAME`: Your database username
+- `SPRING_DATASOURCE_PASSWORD`: Your database password
+- `REFRESH_TOKEN_SECRET`: A secret key for generating refresh tokens
 
-```bash
-cd PBM-Database
-docker-compose up -d
-```
+>**Note:** To generate a refresh token secret, you can use the following command: `openssl rand -hex 32`
 
-The `docker-compose.yml` file can be customized to set a username and password for the database. However, **do not change the database name** at this time to ensure compatibility with the application.
+Now, build the backend using the following command:  
 
-### **3. Ensure Database Accessibility**
+`./gradlew build`
 
-To verify that the database is accessible, use a database client like DBeaver with the following connection details:
+### Configure the Database
 
-- **Host**: `localhost`
-- **Port**: `3307`
-- **User**: `user`
-- **Password**: `12345678` (as defined in the `docker-compose.yml`)
+The application uses a MySQL database. You can configure the database connection by updating the `.env` file located in the `PBM-Database` directory. Modify the following variables to match your database configuration:
 
-**Note**: Ensure you are using the **MySQL** driver for the connection, and you may need to set `allowPublicKeyRetrieval=true` in the driver properties when creating a new connection in DBeaver to avoid connection issues.
+- `MYSQL_USER`: Should match `SPRING_DATASOURCE_USERNAME`
+- `MYSQL_PASSWORD`: Should match `SPRING_DATASOURCE_PASSWORD`
 
-### **4. Start the Backend Application**
+### Run the Application
 
-Open a new terminal window, navigate to the **PBM-Backend** directory, and start the Spring Boot application using Gradle:
+Now that both the backend and database have been built, you can run the application using Docker Compose. From the root directory of the project, execute the following command:  
 
-```bash
-cd ../PBM-Backend
-./gradleW bootRun --console=plain
-```
+`docker-compose up --build`
 
-Once the backend is up and running, you can access it at:  
-[http://localhost:8080](http://localhost:8080)
+The application will be available at `http://localhost:3000`.
 
-### **5. Start the Frontend Application**
+To close the application, press `Ctrl + C` in the terminal where the Docker Compose command is running. To stop and remove the containers, networks, and volumes, use the following command:  
 
-Start by opening a new terminal window, then navigate to the **PBM-Frontend** directory, install the necessary dependencies, and run the application:
-
-```bash
-cd ../PBM-Frontend
-npm install
-npm run dev
-```
-
-Once the frontend is up and running, you can verify it by accessing it at:  
-[http://localhost:3000](http://localhost:3000)
-
-## **Development Workflow**
-
-### **Updating Submodules:**
-
-Pull updates for all submodules when changes are made:
-
-```bash
-git submodule update --remote --merge
-```
-
-### **Testing Changes:**
-
-To run frontend tests, use:
-
-```bash
-npm run test
-```
-
-### **Stopping Services:**
-
-Stop Docker containers and servers when done:
-
-```bash
-docker-compose down  # Stops the database container
-```
-
-For React and Spring Boot servers, press **Ctrl+C** to stop them.
+`docker-compose down`

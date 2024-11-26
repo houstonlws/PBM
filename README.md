@@ -2,131 +2,59 @@
 
 Print Bill Master is a comprehensive Printer Billing and Management Application designed to streamline the management of printer usage and billing information across multiple departments. The application offers tools for tracking metrics, submitting maintenance requests, managing users and departments, and generating detailed billing records.
 
-## Features
+## Prerequisites
 
-- **Printer Usage and Billing Records:** Tracks and maintains usage and billing information for a large number of printers.
-- **Maintenance Requests:** Users can submit maintenance requests, and administrators can update their statuses.
-- **Printer and Department Management:** Administrators can add printers, assign them to departments, and manage department details.
-- **User Management:** Administrators can add users, modify their privileges, and manage user roles.
-- **Customizable Billing Profiles:** Pricing for printer metrics is editable by administrators and can be saved as profiles for streamlined billing.
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine 
 
-- **Metrics Visualization:** Graphical representations of total department printer metrics for the current and previous months are available to both administrators and users.
+- [Java Verison 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or above installed on your machine
 
-- **Billing History:** Provides a detailed record of a department's billing history, accessible by both administrators and users.
+## Quick Start Guide
 
-## Getting Started
+To begin, be sure that Docker Desktop is installed and running.
 
-To set up and run the Print Bill Master application, follow these steps:
+### Clone the Repository
 
-### 1. Clone the Main Repository
+Executing the following command will clone the repository to your local machine and initialize the submodules required for the project.
 
-Clone the main repository, which includes submodules for the frontend, backend, and database:
+`git clone git@github.com:houstonlws/PBM.git`  
+`cd PBM`  
+`git submodule update --init`
 
-```bash
-git clone --recurse-submodules https://github.com/houstonlws/PBM-Main.git
-cd PBM-Main
-```
+### Build the Backend
 
-### 2. Initialize and Update Submodules
+The appication is deployed using Docker Compose. For the deploys to be successful, the backend must be built first.
 
-If the submodules were not cloned properly, initialize and update them manually:
+Navigate to the backend directory `PBM-Backend` and open the .env file. Update the following variables with your own values:
 
-    git submodule init
-    git submodule update
+- `SPRING_DATASOURCE_USERNAME`: Your database username
+- `SPRING_DATASOURCE_PASSWORD`: Your database password
+- `REFRESH_TOKEN_SECRET`: A secret key for generating refresh tokens
 
-The submodules are:
+>**Note:** To generate a refresh token secret, you can use the following command: `openssl rand -hex 32`
 
-- PBM-Frontend: The React-based frontend application.
-- PBM-Backend: The Spring Boot backend service.
-- PBM-Database: The MySQL database setup.
+Now, build the backend using the following command:  
 
-### 3. Set Up Each Component
+`./gradlew build`
 
-- **PBM-Database**
+### Configure the Database
 
-  1. Navigate to the database directory:
+The application uses a MySQL database. You can configure the database connection by updating the `.env` file located in the `PBM-Database` directory. Modify the following variables to match your database configuration:
 
-  ```bash
-  cd PBM-Database
-  ```
+- `MYSQL_USER`: Should match `SPRING_DATASOURCE_USERNAME`
+- `MYSQL_PASSWORD`: Should match `SPRING_DATASOURCE_PASSWORD`
 
-  2. Start the MySQL container using Docker Compose:
+### Run the Application
 
-  ```bash
-  docker-compose up -d
-  ```
+Now that both the backend and database have been built, you can run the application using Docker Compose. From the root directory of the project, execute the following command:  
 
-  3. Ensure the database is initialized and running:
+`docker-compose up --build`
 
-  - Host: `localhost`
-  - Port: `3307`
-  - User: `user`
-  - Password: `12345678` (as defined in the `docker-compose.yml`).
+The application will be available at `http://localhost:3000`.
 
-- **PBM-Backend**
+To close the application, press `Ctrl + C` in the terminal where the Docker Compose command is running. To stop and remove the containers, networks, and volumes, use the following command:  
 
-  1. Navigate to the backend directory:
+`docker-compose down`
 
-  ```bash
-  cd ../PBM-Backend
-  ```
+## Documentation
 
-  2. Build and run the Spring Boot application:
-
-  ```bash
-  ./gradleW bootRun --console=plain
-  ```
-
-  3. Verify the backend is running at `http://localhost:8080`.
-
-- **PBM-Frontend**
-
-  1. Navigate to the frontend directory:
-
-  ```bash
-  cd ../PBM-Frontend
-  ```
-
-  2. Install dependencies:
-
-  ```bash
-  npm install
-  ```
-
-  3. Start the React development server:
-
-  ```bash
-  npm run dev
-  ```
-
-  4. Verify the frontend is accessible at `http://localhost:3000`.
-
-### 4. Access the Application
-
-- Frontend UI: Navigate to `http://localhost:3000`.
-- Backend API: Access API endpoints at `http://localhost:8080`.
-- Database: Use a MySQL client to verify the database at `localhost:3307`.
-
-## Development Workflow
-
-1. Updating Submodules:
-
-   Pull updates for all submodules when changes are made:
-
-   ```bash
-   git submodule update --remote --merge
-   ```
-
-2. Testing Changes:
-
-   Frontend tests: `npm run test`
-
-3. Stopping Services:
-
-   Stop Docker containers and servers when done:
-
-   ```bash
-   docker-compose down # Stops database
-   ```
-
-**Ctrl+C** for React and Spring Boot servers
+For more detailed information about the application, including components and usage, please refer to the [Docs](https://houstonlws.github.io/PBM/).
