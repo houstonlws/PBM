@@ -4,19 +4,14 @@ theme: just-the-docs
 
 email: houstonhvrd@gmail.com
 url: https://houstonlws.github.io
-baseurl: /PrintBillMaster
+baseurl: /PBM
 
 aux_links:
-  PBM GitHub: https://github.com/houstonlws/PrintBillMaster
+  PBM GitHub: https://github.com/houstonlws/PBM
 
 just-the-docs:
   logo: /assets/images/logo.png
   search_enabled: true
-  navigation:
-    - name: Home
-      url: /
-    - name: Documentation
-      url: /docs/
 
 plugins:
   - jekyll-remote-theme
