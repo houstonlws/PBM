@@ -1,5 +1,7 @@
 # Print Bill Master (PBM)
 
+`v1.0.0`
+
 Print Bill Master is a comprehensive Printer Billing and Management Application designed to streamline the management of printer usage and billing information across multiple departments. The application offers tools for tracking metrics, submitting maintenance requests, managing users and departments, and generating detailed billing records.
 
 ## Prerequisites
